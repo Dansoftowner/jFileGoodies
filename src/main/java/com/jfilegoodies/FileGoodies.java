@@ -3,15 +3,23 @@ package com.jfilegoodies;
 import com.jfilegoodies.util.OsUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class FileGoodies {
 
+    private FileGoodies() {
+    }
+
     private static final String DOT = ".";
     private static final String EMPTY = "";
 
-    private FileGoodies() {
+    public enum FileType {
+        FILE, DIRECTORY
     }
+
 
     private static String getExtension(String fileName) {
         if (fileName == null) {
@@ -42,4 +50,83 @@ public final class FileGoodies {
         Pattern compiledRegex = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         return compiledRegex.matcher(getExtension(file.getName())).matches();
     }
+
+    /**
+     * Checks that the path of the file is valid or not.
+     * If the file object is null it returns immediately false;
+     * <p>
+     * Example (on Windows):
+     *
+     * <pre>
+     *     "C:/Users/User/test.txt" -> {@code true}
+     *     "C?,:.f" -> {@code false}s
+     * </pre>
+     *
+     * @param file the file that we want to check; may be null
+     * @return {@code true} if the filepath is valid; {@code false} otherwise.
+     */
+    public static boolean hasValidPath(File file) {
+        try {
+            file.toPath(); //ignored result
+            return true;
+        } catch (InvalidPathException | NullPointerException e) {
+            return false;
+        }
+    }
+
+    public static boolean hasNotValidPath(File file) {
+        return !hasValidPath(file);
+    }
+
+    public static String shortenedFilePath(File file, int maxBack) {
+        if (Objects.isNull(file) || maxBack < 0) {
+            return "";
+        }
+
+        StringBuilder shortenedPath = new StringBuilder(file.getName());
+
+        File lastParent = file.getParentFile();
+        while (maxBack > 0 && lastParent != null) {
+            shortenedPath.insert(0, File.separator).insert(0, lastParent.getName());
+            lastParent = lastParent.getParentFile();
+
+            maxBack--;
+        }
+
+        if (lastParent != null) {
+            shortenedPath.insert(0, "..." + File.separator);
+        }
+
+        return shortenedPath.toString();
+    }
+
+    public static boolean createFile(File file, FileType fileType)
+            throws IOException, SecurityException {
+        if (!file.exists()) {
+            if (fileType == FileType.DIRECTORY) {
+                return file.mkdirs();
+            } else {
+                return file.createNewFile();
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean deprecateFile(File file) {
+        if (file.isDirectory())
+            return false;
+
+        File directoryOfFile = file.getParentFile();
+        String nameOfFile = file.getName();
+
+        File generated;
+        do {
+            int random = (int) (Math.random() * Math.pow(10, 5));
+            generated = new File(directoryOfFile, String.format("%s_%s%d", nameOfFile, "old", random));
+        } while (generated.exists());
+
+        return file.renameTo(generated);
+    }
+
 }
