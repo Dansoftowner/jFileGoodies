@@ -100,17 +100,20 @@ public final class FileGoodies {
         return shortenedPath.toString();
     }
 
-    public static boolean createFile(File file, FileType fileType)
-            throws IOException, SecurityException {
-        if (!file.exists()) {
-            if (fileType == FileType.DIRECTORY) {
-                return file.mkdirs();
-            } else {
-                return file.createNewFile();
-            }
-        }
+    public static boolean createFile(File file, FileType fileType) throws IOException {
+        Objects.requireNonNull(fileType, "The fileType mustn't be null!");
 
-        return true;
+        if (file.exists())
+            return true;
+
+        switch (fileType) {
+            case FILE:
+                return file.createNewFile();
+            case DIRECTORY:
+                return file.mkdirs();
+            default:
+                return false; //make the compiler happy
+        }
     }
 
     public static boolean deprecateFile(File file) {
