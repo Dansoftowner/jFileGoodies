@@ -101,9 +101,9 @@ public final class FileGoodies {
     }
 
     public static boolean createFile(File file, FileType fileType) throws IOException {
-        Objects.requireNonNull(fileType, "The fileType mustn't be null!");
-
-        if (file.exists())
+        if (file == null)
+            return false;
+        else if (file.exists())
             return true;
 
         switch (fileType) {
@@ -117,7 +117,7 @@ public final class FileGoodies {
     }
 
     public static boolean deprecateFile(File file) {
-        if (file.isDirectory())
+        if (file == null || file.isDirectory())
             return false;
 
         File directoryOfFile = file.getParentFile();
