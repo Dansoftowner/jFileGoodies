@@ -15,8 +15,8 @@ import static com.jfilegoodies.util.StringLiterals.*;
 /**
  * Provides some special utilities for files.
  *
- * @since 1.0
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public final class FileGoodies {
 
@@ -218,20 +218,55 @@ public final class FileGoodies {
         return shortenedFilePath(file, maxBack, File.separatorChar);
     }
 
-    public static boolean deprecateFile(File file) {
+    /**
+     * This method creates a {@link File} object that is a modified version of
+     * the given file. It's produced this way:
+     * <ul>
+     *     <li>Generates a random 5-digit number</li>
+     *     <li>Adds the '_old' word to the original name of the file</li>
+     *     <li>Adds the random number to the end of the file name</li>
+     * </ul>
+     * The file that this new {@link File} object represents is definitely
+     * not existing (because the process that is described above will be repeated
+     * while we get a file that is not existing).
+     * <pre>
+     *     deprecateFile(File("file.txt")) => File("file_old3102.txt")
+     *     deprecateFile(File("path/to/someVideo.mp4")) => File("path/to/someVideo_old4916")
+     * </pre>
+     *
+     * <p>
+     * It is good if let's say you want to save a new file but with that name a file already exist
+     * and you don't want to delete the existing file, you just want to rename it.
+     * <pre>{@code
+     *         //the file that we want to save to
+     *         File toSave = ...;
+     *         if (toSave.exists()) {
+     *             //if a file already with this name exist we rename it
+     *             File deprecateFile = FileGoodies.deprecateFile(toSave);
+     *             toSave.renameTo(deprecateFile);
+     *         }
+     *
+     *         //now we can easily save to the file
+     * }</pre>
+     *
+     * @param file the file that we want to rename
+     */
+    public static File deprecateFile(File file) {
         if (file == null || file.isDirectory())
-            return false;
+            return null;
 
         File directoryOfFile = file.getParentFile();
-        String nameOfFile = file.getName();
+        FormattedFile formattedFile = new FormattedFile(file);
+        String simpleName = formattedFile.getSimpleName();
+        String extension = formattedFile.getExtension();
 
         File generated;
         do {
             int random = (int) (Math.random() * Math.pow(10, 5));
-            generated = new File(directoryOfFile, String.format("%s_%s%d", nameOfFile, "old", random));
+            generated = new File(directoryOfFile, String.format("%s_%s%d.%s", simpleName, "old", random, extension));
         } while (generated.exists());
 
-        return file.renameTo(generated);
+        return generated;
     }
 
     @Deprecated
@@ -250,7 +285,6 @@ public final class FileGoodies {
                 return false; //make the compiler happy
         }
     }
-
 
 
 }

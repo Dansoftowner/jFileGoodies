@@ -39,4 +39,12 @@ public class FileGoodiesTest {
         assertEquals(".|documents|MyFile.txt", FileGoodies.shortenedFilePath(file, ".", '|', 1));
         assertEquals(".../MyFile.txt", FileGoodies.shortenedFilePath(file, "...", '/', 0));
     }
+
+    @Test
+    public void testDeprecateFile() {
+       File original = new File("path/to/theFile.log");
+       File deprecated = FileGoodies.deprecateFile(original);
+       assertNotEquals(deprecated, original);
+       assertTrue(deprecated.getName().matches("theFile_old\\d{4}\\.log"));
+    }
 }
