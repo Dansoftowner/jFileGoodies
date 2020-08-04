@@ -9,6 +9,7 @@ import static com.jfilegoodies.util.StringLiterals.*;
  * that works on a MacOS operating system.
  *
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public class MacFileExplorer extends FileExplorer {
 

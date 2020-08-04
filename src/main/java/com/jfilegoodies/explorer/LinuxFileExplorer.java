@@ -14,6 +14,7 @@ import static com.jfilegoodies.util.StringLiterals.SPACE;
  * It can be fixed with: <i>sudo apt install nautilus</i>
  *
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public class LinuxFileExplorer extends FileExplorer {
 

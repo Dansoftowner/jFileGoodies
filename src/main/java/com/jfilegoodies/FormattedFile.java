@@ -13,6 +13,7 @@ import static com.jfilegoodies.util.StringLiterals.EMPTY;
  * methods.
  *
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public class FormattedFile extends File {
 

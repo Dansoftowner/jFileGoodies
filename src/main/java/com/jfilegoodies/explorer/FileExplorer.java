@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @see FileExplorers
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public abstract class FileExplorer {
 
@@ -32,6 +33,7 @@ public abstract class FileExplorer {
      *
      * @return {@code true} if the window opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
+     * @since 1.0
      */
     public boolean open() throws IOException {
         return executeWithRuntime(createOpenCommand());
@@ -47,6 +49,7 @@ public abstract class FileExplorer {
      * @param file the file object that represents the directory; may be null (then the method will immediately return)
      * @return {@code true} if the window is opened; {@code false} otherwise.
      * @throws IOException if some I/O exception occurs
+     * @since 1.0
      */
     public boolean openDir(File file) throws IOException {
         if (file == null || !file.exists() || !file.isDirectory()) {
@@ -68,6 +71,7 @@ public abstract class FileExplorer {
      * @param file the file object that represents the file or directory; may be null (then the method will immediately return)
      * @return {@code true} if the window is opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
+     * @since 1.0
      */
     public boolean openSelect(File file) throws IOException {
         if (file == null || !file.exists()) {

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FormattedFileTest {
 
-
     @Test
     public void testGetExtension() {
         FormattedFile formattedFile = new FormattedFile(new File("path/to/TextFile.txt"));

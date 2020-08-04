@@ -10,6 +10,7 @@ import java.util.Objects;
  * Provides factory/utility methods for {@link FileExplorer} objects.
  *
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public final class FileExplorers {
 
@@ -29,6 +30,8 @@ public final class FileExplorers {
      * FileExplorers.ExceptionFreeExplorer exceptionFreeExplorer = FileExplorers.notThrowsException(explorer);
      * //use it
      * }</pre>
+     *
+     * @since 1.0
      */
     public static final class LazyExplorer extends FileExplorer {
         private final FileExplorer fileExplorer;
@@ -117,6 +120,7 @@ public final class FileExplorers {
      * with the current OS.
      *
      * @return the {@link FileExplorer} implementation.
+     * @since 1.0
      */
     public static FileExplorer get() {
         if (OsUtils.isWindows()) {
@@ -137,6 +141,7 @@ public final class FileExplorers {
      * @return the {@link LazyExplorer} object.
      * @throws NullPointerException if the explorer is null
      * @see LazyExplorer
+     * @since 1.0
      */
     public static LazyExplorer notThrowsException(FileExplorer explorer) {
         return new LazyExplorer(explorer);

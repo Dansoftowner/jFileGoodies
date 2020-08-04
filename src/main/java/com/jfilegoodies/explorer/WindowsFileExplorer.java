@@ -10,6 +10,7 @@ import static com.jfilegoodies.util.StringLiterals.SPACE;
  * that works on a Microsoft Windows operating system.
  *
  * @author Daniel Gyorffy
+ * @since 1.0
  */
 public class WindowsFileExplorer extends FileExplorer {
 

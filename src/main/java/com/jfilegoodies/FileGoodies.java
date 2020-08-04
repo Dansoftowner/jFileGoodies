@@ -36,6 +36,7 @@ public final class FileGoodies {
      * <a href='https://www.lifewire.com/list-of-executable-file-extensions-2626061'>List of Executable File Extensions</a>
      *
      * @return the List of extensions
+     * @since 1.0
      */
     public static List<String> getExecutableExtensions() {
         return OsUtils.isWindows() ? Arrays.asList(
@@ -76,6 +77,7 @@ public final class FileGoodies {
      *
      * @param file the file to check
      * @return {@code true} if the file is an executable file; {@code false} otherwise
+     * @since 1.0
      */
     public static boolean isOSExecutable(File file) {
         FormattedFile formattedFile;
@@ -103,6 +105,7 @@ public final class FileGoodies {
      * Returns the negated value of {@link #isOSExecutable(File)}.
      *
      * @see #isOSExecutable(File)
+     * @since 1.0
      */
     public static boolean isNotOSExecutable(File file) {
         return !isOSExecutable(file);
@@ -121,6 +124,7 @@ public final class FileGoodies {
      *
      * @param file the file that we want to check; may be null
      * @return {@code true} if the filepath is valid; {@code false} otherwise.
+     * @since 1.0
      */
     public static boolean hasValidPath(File file) {
         try {
@@ -135,6 +139,7 @@ public final class FileGoodies {
      * Returns the negated value of {@link #hasValidPath(File)}.
      *
      * @see #hasValidPath(File)
+     * @since 1.0
      */
     public static boolean hasNotValidPath(File file) {
         return !hasValidPath(file);
@@ -173,6 +178,7 @@ public final class FileGoodies {
      * @param maxBack   specifies how many directories we want to show before the file's name;
      *                  if it's less than 0 the method will return an empty string.
      * @return the shortened path
+     * @since 1.0
      */
     public static String shortenedFilePath(File file, String prefix, char separator, int maxBack) {
         if (file == null || maxBack < 0) {
@@ -203,6 +209,7 @@ public final class FileGoodies {
      * <b>"..."<b>.
      *
      * @see #shortenedFilePath(File, String, char, int)
+     * @since 1.0
      */
     public static String shortenedFilePath(File file, int maxBack, char separator) {
         return shortenedFilePath(file, "...", separator, maxBack);
@@ -213,6 +220,7 @@ public final class FileGoodies {
      * <b>"..."</b> and with the default separator <b>{@link File#separatorChar}</b>.
      *
      * @see #shortenedFilePath(File, String, char, int)
+     * @since 1.0
      */
     public static String shortenedFilePath(File file, int maxBack) {
         return shortenedFilePath(file, maxBack, File.separatorChar);
@@ -250,6 +258,7 @@ public final class FileGoodies {
      * }</pre>
      *
      * @param file the file that we want to rename
+     * @since 1.0
      */
     public static File deprecateFile(File file) {
         if (file == null || file.isDirectory())
