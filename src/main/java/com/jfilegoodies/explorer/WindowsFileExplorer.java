@@ -2,6 +2,7 @@ package com.jfilegoodies.explorer;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A {@link WindowsFileExplorer} is a {@link FileExplorer} implementation
@@ -28,7 +29,7 @@ public class WindowsFileExplorer extends FileExplorer {
         Process process = Runtime.getRuntime().exec(EXPLORER_EXE);
 
         try {
-            process.waitFor();
+            process.waitFor(1, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +39,7 @@ public class WindowsFileExplorer extends FileExplorer {
 
     @Override
     public boolean openDir(File file) throws IOException {
-        if (file == null || !file.exists() ||!file.isDirectory()) {
+        if (file == null || !file.exists() || !file.isDirectory()) {
             return false;
         }
 
@@ -51,15 +52,7 @@ public class WindowsFileExplorer extends FileExplorer {
                 .append(file.getAbsoluteFile().getAbsolutePath())
                 .append(QUOTATION);
 
-        Process process = Runtime.getRuntime().exec(commandBuilder.toString());
-
-        try {
-            process.waitFor();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return true;
+        return executeCommand(commandBuilder.toString());
     }
 
     @Override
@@ -77,10 +70,14 @@ public class WindowsFileExplorer extends FileExplorer {
                 .append(file.getAbsoluteFile().getAbsolutePath())
                 .append(QUOTATION);
 
-        Process process = Runtime.getRuntime().exec(commandBuilder.toString());
+        return executeCommand(commandBuilder.toString());
+    }
+
+    private boolean executeCommand(String command) throws IOException {
+        Process process = Runtime.getRuntime().exec(command);
 
         try {
-            process.waitFor();
+            process.waitFor(1, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

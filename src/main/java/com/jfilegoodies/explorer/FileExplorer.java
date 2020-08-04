@@ -21,7 +21,11 @@ public abstract class FileExplorer {
     /**
      * Opens the gui file-explorer.
      *
-     * @return {@code true} if the window opened; {@link false} otherwise
+     * <p>
+     * Note:
+     * <i>On Linux, 'nautilus' should be installed on the system (if it's not by default) <span color='red'>sudo apt install nautilus</span></i>
+     *
+     * @return {@code true} if the window opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
      */
     public abstract boolean open() throws IOException;
@@ -44,6 +48,9 @@ public abstract class FileExplorer {
      *
      * <p>
      * If the file doesn't exist then it will immediately return with {@code false}.
+     * <p>
+     * Note:
+     * <i>On Linux, 'nautilus' should be installed on the system (if it's not by default) <span color='red'>sudo apt install nautilus</span></i>
      *
      * @param file the file object that represents the file or directory; may be null (then the method will immediately return)
      * @return {@code true} if the window is opened; {@code false} otherwise
