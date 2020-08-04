@@ -3,12 +3,25 @@ package com.jfilegoodies.explorer;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A {@link WindowsFileExplorer} is a {@link FileExplorer} implementation
+ * that works on a Microsoft Windows operating system.
+ *
+ * @author Daniel Gyorffy
+ */
 public class WindowsFileExplorer extends FileExplorer {
 
     private static final String EXPLORER_EXE = "explorer.exe";
 
-    private static final String QUOTATION = "\"";
-    private static final String SPACE = " ";
+    /**
+     * The quotation character (")
+     */
+    private static final char QUOTATION = '"';
+
+    /**
+     * The space character
+     */
+    private static final char SPACE = ' ';
 
     @Override
     public boolean open() throws IOException {
