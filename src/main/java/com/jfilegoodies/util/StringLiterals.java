@@ -3,6 +3,16 @@ package com.jfilegoodies.util;
 public final class StringLiterals {
 
     /**
+     * Empty string ""
+     */
+    public static final String EMPTY = "";
+
+    /**
+     * The dot character (.)
+     */
+    public static final char DOT = '.';
+
+    /**
      * The quotation character (")
      */
     public static final char QUOTATION = '"';
