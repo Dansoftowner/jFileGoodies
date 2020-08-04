@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class MacFileExplorer extends FileExplorer {
+
+    private static final String OPEN = "open";
+
     @Override
     public boolean open() throws IOException {
         throw new UnsupportedOperationException("Opening files on Mac is not supported (yet)");

@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static com.jfilegoodies.util.StringLiterals.QUOTATION;
+import static com.jfilegoodies.util.StringLiterals.SPACE;
+
 /**
  * A {@link WindowsFileExplorer} is a {@link FileExplorer} implementation
  * that works on a Microsoft Windows operating system.
@@ -13,16 +16,6 @@ import java.util.concurrent.TimeUnit;
 public class WindowsFileExplorer extends FileExplorer {
 
     private static final String EXPLORER_EXE = "explorer.exe";
-
-    /**
-     * The quotation character (")
-     */
-    private static final char QUOTATION = '"';
-
-    /**
-     * The space character
-     */
-    private static final char SPACE = ' ';
 
     @Override
     public boolean open() throws IOException {

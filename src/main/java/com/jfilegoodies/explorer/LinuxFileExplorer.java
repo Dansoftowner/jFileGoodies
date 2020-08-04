@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static com.jfilegoodies.util.StringLiterals.QUOTATION;
+import static com.jfilegoodies.util.StringLiterals.SPACE;
+
 /**
  * A {@link LinuxFileExplorer} is a {@link FileExplorer} implementation
  * that works on a Linux operating system.
@@ -18,16 +21,6 @@ public class LinuxFileExplorer extends FileExplorer {
 
     private static final String NAUTILUS = "nautilus";
     private static final String XDG_OPEN = "xdg-open";
-
-    /**
-     * The quotation character (")
-     */
-    private static final char QUOTATION = '"';
-
-    /**
-     * The space character
-     */
-    private static final char SPACE = ' ';
 
     @Override
     public boolean open() throws IOException {
