@@ -33,7 +33,7 @@ public abstract class FileExplorer {
      * @return {@code true} if the window opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
      */
-    public final boolean open() throws IOException {
+    public boolean open() throws IOException {
         return executeWithRuntime(createOpenCommand());
     }
 
@@ -48,7 +48,7 @@ public abstract class FileExplorer {
      * @return {@code true} if the window is opened; {@code false} otherwise.
      * @throws IOException if some I/O exception occurs
      */
-    public final boolean openDir(File file) throws IOException {
+    public boolean openDir(File file) throws IOException {
         if (file == null || !file.exists() || !file.isDirectory()) {
             return false;
         }
@@ -69,7 +69,7 @@ public abstract class FileExplorer {
      * @return {@code true} if the window is opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
      */
-    public final boolean openSelect(File file) throws IOException {
+    public boolean openSelect(File file) throws IOException {
         if (file == null || !file.exists()) {
             return false;
         }

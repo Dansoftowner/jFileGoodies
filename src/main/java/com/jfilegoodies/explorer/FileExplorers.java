@@ -14,7 +14,7 @@ import java.util.Objects;
 public final class FileExplorers {
 
     /**
-     * An ExceptionFreeExplorer is a {@link FileExplorer} that wraps
+     * An LazyExplorer is a {@link FileExplorer} that wraps
      * another {@link FileExplorer} object.
      *
      * <p>
@@ -30,11 +30,26 @@ public final class FileExplorers {
      * //use it
      * }</pre>
      */
-    public static final class ExceptionFreeExplorer extends FileExplorer {
+    public static final class LazyExplorer extends FileExplorer {
         private final FileExplorer fileExplorer;
 
-        private ExceptionFreeExplorer(FileExplorer fileExplorer) {
+        private LazyExplorer(FileExplorer fileExplorer) {
             this.fileExplorer = Objects.requireNonNull(fileExplorer, "The fileExplorer object mustn't be null");
+        }
+
+        @Override
+        protected String createOpenCommand() {
+            return null;
+        }
+
+        @Override
+        protected String createOpenDirCommand(File file) {
+            return null;
+        }
+
+        @Override
+        protected String createOpenSelectCommand(File file) {
+            return null;
         }
 
         @Override
@@ -66,6 +81,21 @@ public final class FileExplorers {
     }
 
     private static final class NullFileExplorer extends FileExplorer {
+        @Override
+        protected String createOpenCommand() {
+            return null;
+        }
+
+        @Override
+        protected String createOpenDirCommand(File file) {
+            return null;
+        }
+
+        @Override
+        protected String createOpenSelectCommand(File file) {
+            return null;
+        }
+
         @Override
         public boolean open() {
             return false;
@@ -101,14 +131,14 @@ public final class FileExplorers {
     }
 
     /**
-     * Wraps a {@link FileExplorer} into a {@link ExceptionFreeExplorer} that doesn't throw exceptions.
+     * Wraps a {@link FileExplorer} into a {@link LazyExplorer} that doesn't throw exceptions.
      *
      * @param explorer the original {@link FileExplorer} object; shouldn't be null
-     * @return the {@link ExceptionFreeExplorer} object.
+     * @return the {@link LazyExplorer} object.
      * @throws NullPointerException if the explorer is null
-     * @see ExceptionFreeExplorer
+     * @see LazyExplorer
      */
-    public static ExceptionFreeExplorer notThrowsException(FileExplorer explorer) {
-        return new ExceptionFreeExplorer(explorer);
+    public static LazyExplorer notThrowsException(FileExplorer explorer) {
+        return new LazyExplorer(explorer);
     }
 }
