@@ -16,18 +16,47 @@ public final class FileExplorers {
         }
 
         @Override
-        public void show(File file) {
+        public boolean open() {
             try {
-                this.fileExplorer.show(file);
+                return this.fileExplorer.open();
             } catch (IOException | RuntimeException ignored) {
+                return false;
+            }
+        }
+
+        @Override
+        public boolean openDir(File file) {
+            try {
+                return this.fileExplorer.openDir(file);
+            } catch (IOException | RuntimeException ignored) {
+                return false;
+            }
+        }
+
+        @Override
+        public boolean openSelect(File file) {
+            try {
+                return this.fileExplorer.openSelect(file);
+            } catch (IOException | RuntimeException ignored) {
+                return false;
             }
         }
     }
 
     private static class NullFileExplorer extends FileExplorer {
         @Override
-        public void show(File file) throws IOException {
-            //empty
+        public boolean open() {
+            return false;
+        }
+
+        @Override
+        public boolean openDir(File file) {
+            return false;
+        }
+
+        @Override
+        public boolean openSelect(File file) {
+            return false;
         }
     }
 
