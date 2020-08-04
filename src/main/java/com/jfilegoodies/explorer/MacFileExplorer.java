@@ -1,24 +1,50 @@
 package com.jfilegoodies.explorer;
 
 import java.io.File;
-import java.io.IOException;
 
+import static com.jfilegoodies.util.StringLiterals.*;
+
+/**
+ * A {@link MacFileExplorer} is a {@link FileExplorer} implementation
+ * that works on a MacOS operating system.
+ *
+ * @author Daniel Gyorffy
+ */
 public class MacFileExplorer extends FileExplorer {
 
     private static final String OPEN = "open";
 
     @Override
-    public boolean open() throws IOException {
-        throw new UnsupportedOperationException("Opening files on Mac is not supported (yet)");
+    protected String createOpenCommand() {
+        return OPEN + SPACE + TILDE;
     }
 
     @Override
-    public boolean openDir(File file) throws IOException {
-        throw new UnsupportedOperationException("Opening files on Mac is not supported (yet)");
+    protected String createOpenDirCommand(File file) {
+        return new StringBuilder()
+                .append(OPEN)
+                .append(SPACE)
+                .append(QUOTATION)
+                .append(file.getAbsoluteFile().getAbsolutePath())
+                .append(QUOTATION)
+                .toString();
     }
 
+    /**
+     * Based on <a href="https://stackoverflow.com/questions/39214539/opening-finder-from-terminal-with-file-selected">this</a>
+     */
     @Override
-    public boolean openSelect(File file) {
-        throw new UnsupportedOperationException("Opening files on Mac is not supported (yet)");
+    protected String createOpenSelectCommand(File file) {
+        return new StringBuilder()
+                .append(OPEN)
+                .append(SPACE)
+                .append("-a")
+                .append(SPACE)
+                .append("Finder")
+                .append(SPACE)
+                .append(QUOTATION)
+                .append(file.getAbsoluteFile().getAbsolutePath())
+                .append(QUOTATION)
+                .toString();
     }
 }

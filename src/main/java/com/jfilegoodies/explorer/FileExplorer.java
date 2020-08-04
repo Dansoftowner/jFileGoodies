@@ -2,6 +2,7 @@ package com.jfilegoodies.explorer;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A FileExplorer represents the GUI file-explorer provided by the OS.
@@ -18,6 +19,10 @@ import java.io.IOException;
  */
 public abstract class FileExplorer {
 
+    protected abstract String createOpenCommand();
+    protected abstract String createOpenDirCommand(File file);
+    protected abstract String createOpenSelectCommand(File file);
+
     /**
      * Opens the gui file-explorer.
      *
@@ -28,7 +33,9 @@ public abstract class FileExplorer {
      * @return {@code true} if the window opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
      */
-    public abstract boolean open() throws IOException;
+    public final boolean open() throws IOException {
+        return executeWithRuntime(createOpenCommand());
+    }
 
     /**
      * Opens the gui file-explorer window where the specified directory is opened.
@@ -41,7 +48,13 @@ public abstract class FileExplorer {
      * @return {@code true} if the window is opened; {@code false} otherwise.
      * @throws IOException if some I/O exception occurs
      */
-    public abstract boolean openDir(File file) throws IOException;
+    public final boolean openDir(File file) throws IOException {
+        if (file == null || !file.exists() || !file.isDirectory()) {
+            return false;
+        }
+
+        return executeWithRuntime(createOpenDirCommand(file));
+    }
 
     /**
      * Opens the gui file-explorer window where the specified file is selected.
@@ -56,5 +69,23 @@ public abstract class FileExplorer {
      * @return {@code true} if the window is opened; {@code false} otherwise
      * @throws IOException if some I/O exception occurs
      */
-    public abstract boolean openSelect(File file) throws IOException;
+    public final boolean openSelect(File file) throws IOException {
+        if (file == null || !file.exists()) {
+            return false;
+        }
+
+        return executeWithRuntime(createOpenSelectCommand(file));
+    }
+
+    private boolean executeWithRuntime(String command) throws IOException {
+        Process process = Runtime.getRuntime().exec(command);
+
+        try {
+            process.waitFor(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
+    }
 }

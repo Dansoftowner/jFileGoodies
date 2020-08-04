@@ -12,6 +12,11 @@ public final class StringLiterals {
      */
     public static final char SPACE = ' ';
 
+    /**
+     * The tilde character (~)
+     */
+    public static final char TILDE = '~';
+
 
     private StringLiterals() {
     }

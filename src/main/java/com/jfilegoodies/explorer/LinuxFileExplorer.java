@@ -1,8 +1,6 @@
 package com.jfilegoodies.explorer;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static com.jfilegoodies.util.StringLiterals.QUOTATION;
 import static com.jfilegoodies.util.StringLiterals.SPACE;
@@ -23,52 +21,29 @@ public class LinuxFileExplorer extends FileExplorer {
     private static final String XDG_OPEN = "xdg-open";
 
     @Override
-    public boolean open() throws IOException {
-        Process process = Runtime.getRuntime().exec(new String[] {NAUTILUS, "--browser"});
-
-        try {
-            process.waitFor(1, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return true;
+    protected String createOpenCommand() {
+        return NAUTILUS + SPACE + "--browser";
     }
 
     @Override
-    public boolean openDir(File file) throws IOException {
-        if (file == null || !file.exists() ||!file.isDirectory()) {
-            return false;
-        }
-
-        return executeCommand(XDG_OPEN, file);
-    }
-
-    @Override
-    public boolean openSelect(File file) throws IOException {
-        if (file == null || !file.exists()) {
-            return false;
-        }
-
-        return executeCommand(NAUTILUS, file);
-    }
-
-    private boolean executeCommand(String command, File file) throws IOException {
-        StringBuilder commandBuilder = new StringBuilder()
-                .append(command)
+    protected String createOpenDirCommand(File file) {
+        return new StringBuilder()
+                .append(XDG_OPEN)
                 .append(SPACE)
                 .append(QUOTATION)
                 .append(file.getAbsoluteFile().getAbsolutePath())
-                .append(QUOTATION);
+                .append(QUOTATION)
+                .toString();
+    }
 
-        Process process = Runtime.getRuntime().exec(commandBuilder.toString());
-
-        try {
-            process.waitFor(1, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return true;
+    @Override
+    protected String createOpenSelectCommand(File file) {
+        return new StringBuilder()
+                .append(NAUTILUS)
+                .append(SPACE)
+                .append(QUOTATION)
+                .append(file.getAbsoluteFile().getAbsolutePath())
+                .append(QUOTATION)
+                .toString();
     }
 }
