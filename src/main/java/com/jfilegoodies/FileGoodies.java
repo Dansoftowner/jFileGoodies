@@ -15,6 +15,7 @@ import static com.jfilegoodies.util.StringLiterals.*;
 /**
  * Provides some special utilities for files.
  *
+ * @since 1.0
  * @author Daniel Gyorffy
  */
 public final class FileGoodies {
@@ -27,21 +28,6 @@ public final class FileGoodies {
      */
     public enum FileType {
         FILE, DIRECTORY
-    }
-
-    private static String getExtension(String fileName) {
-        if (fileName == null) {
-            return null;
-        }
-
-        int extensionPos = fileName.lastIndexOf(DOT);
-        int separatorPos = getLastSeparatorIndex(fileName);
-
-        return (separatorPos > extensionPos || extensionPos < 0) ? EMPTY : fileName.substring(extensionPos + 1);
-    }
-
-    private static int getLastSeparatorIndex(String fileName) {
-        return Math.max(fileName.lastIndexOf('\\'), fileName.lastIndexOf('/'));
     }
 
     /**
@@ -92,8 +78,8 @@ public final class FileGoodies {
      * @return {@code true} if the file is an executable file; {@code false} otherwise
      */
     public static boolean isOSExecutable(File file) {
-        String extension;
-        if (file == null || file.isDirectory() || (extension = getExtension(file.getName())).isEmpty())
+        FormattedFile formattedFile;
+        if (file == null || file.isDirectory() || (formattedFile = new FormattedFile(file)).hasNoExtension())
             return false;
 
         //creating the regex that will match the file's extension if that's an executable type
@@ -110,7 +96,7 @@ public final class FileGoodies {
         }
 
         Pattern compiledRegex = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        return compiledRegex.matcher(extension).matches();
+        return compiledRegex.matcher(formattedFile.getExtension()).matches();
     }
 
     /**
@@ -175,10 +161,10 @@ public final class FileGoodies {
      * </ul>
      * <p>
      * <b>More examples</b>
-     * <pre>{@code
+     * <pre>
      *  shortenedFilePath(new File("programFiles/thePrg/appdata/inf/config.prop"), "<DEFAULT>", '\\', 0) => "<DEFAULT>\config.prop"
      *  shortenedFilePath(new File("users/user0/documents/Plans.docx"), "[USER_HOME]", '/', 1) => "[USER_HOME]/documents/Plans.docx"
-     * }</pre>
+     * </pre>
      *
      * @param file      the file that we want to show a shorter path of
      * @param prefix    the prefix that will be at the start of the string;
@@ -212,28 +198,24 @@ public final class FileGoodies {
         return shortenedPath.toString();
     }
 
+    /**
+     * Calls the {@link #shortenedFilePath(File, String, char, int)} method with the prefix
+     * <b>"..."<b>.
+     *
+     * @see #shortenedFilePath(File, String, char, int)
+     */
     public static String shortenedFilePath(File file, int maxBack, char separator) {
         return shortenedFilePath(file, "...", separator, maxBack);
     }
 
+    /**
+     * Calls the {@link #shortenedFilePath(File, String, char, int)} with the prefix
+     * <b>"..."</b> and with the default separator <b>{@link File#separatorChar}</b>.
+     *
+     * @see #shortenedFilePath(File, String, char, int)
+     */
     public static String shortenedFilePath(File file, int maxBack) {
         return shortenedFilePath(file, maxBack, File.separatorChar);
-    }
-
-    public static boolean createFile(File file, FileType fileType) throws IOException {
-        if (file == null)
-            return false;
-        else if (file.exists())
-            return true;
-
-        switch (fileType) {
-            case FILE:
-                return file.createNewFile();
-            case DIRECTORY:
-                return file.mkdirs();
-            default:
-                return false; //make the compiler happy
-        }
     }
 
     public static boolean deprecateFile(File file) {
@@ -251,5 +233,24 @@ public final class FileGoodies {
 
         return file.renameTo(generated);
     }
+
+    @Deprecated
+    public static boolean createFile(File file, FileType fileType) throws IOException {
+        if (file == null)
+            return false;
+        else if (file.exists())
+            return true;
+
+        switch (fileType) {
+            case FILE:
+                return file.createNewFile();
+            case DIRECTORY:
+                return file.mkdirs();
+            default:
+                return false; //make the compiler happy
+        }
+    }
+
+
 
 }
