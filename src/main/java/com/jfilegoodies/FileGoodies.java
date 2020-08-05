@@ -54,7 +54,7 @@ public final class FileGoodies {
      * @return the List of extensions
      * @since 1.0
      */
-    public static List<String> getExecutableExtensions() {
+    public static List<String> listExecutableExtensions() {
         return OsUtils.isWindows() ? Arrays.asList(
                 "exe", "bat", "bin", "cmd", "com", "cpl", "gadget", "ins",
                 "inx", "isu", "job", "jse", "lnk", "msc", "msi", "msp",

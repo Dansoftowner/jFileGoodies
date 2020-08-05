@@ -12,7 +12,7 @@ public class FileGoodiesTest {
 
     @Test
     public void testIsOSExecutable() {
-        FileGoodies.getExecutableExtensions().stream()
+        FileGoodies.listExecutableExtensions().stream()
                 .map(extension -> new File(Math.random() + "." + extension))
                 .map(FileGoodies::isOSExecutable)
                 .forEach(Assertions::assertTrue);
