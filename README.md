@@ -116,12 +116,12 @@ The most significant difference is that a `FormattedFile` separates the file-nam
 
 #### <a name="FormattedFile-extension"></a> Converting a `File` to a `FormattedFile` and getting the extension
 
-<b>Wrapping an existing `File` into a `FormattedFile`<b/>
+Wrapping an existing `File` into a `FormattedFile`:
 ```java
 File file = new File("user/home/documents/work/plan/Example.docx");
 FormattedFile formattedFile = new FormattedFile(file);
 ```
-<b>Getting the extension<b/>
+Getting the extension:
 ```java
 System.out.println(formattedFile.getExtension());
 // Or a more efficient way:
