@@ -18,6 +18,7 @@ package com.jfilegoodies;
 
 import java.io.File;
 import java.net.URI;
+import java.util.Optional;
 
 import static com.jfilegoodies.util.StringLiterals.DOT;
 import static com.jfilegoodies.util.StringLiterals.EMPTY;
@@ -106,6 +107,15 @@ public class FormattedFile extends File {
      */
     public String getExtension() {
         return extension;
+    }
+
+    /**
+     * Returns the extension wrapped in an {@link Optional}
+     *
+     * @return the extension wrapped in an optional
+     */
+    public Optional<String> getExtensionOptional() {
+        return Optional.ofNullable(hasNoExtension() ? null : getExtension());
     }
 
     /**
