@@ -19,10 +19,10 @@ If you have become interested let's jump in to the [User Guide](#user-guide)!
    * [The FileGoodies class](#FileGoodies-class)
       * [Executable file-extensions](#executable-file-ext)
       * [Shorting file-paths](#file-path-short)
+      * [More](#FileGoodies-class-more)
    * [The FormattedFile class](#FormattedFile-class)
-      *
-      *
-      *
+      * [Converting a File to a FormattedFile and getting the extension](#FormattedFile-extension)
+      * [More](#FormattedFile-more)
    * [The FileExplorer API](#FileExplorer-API)
      *
      
@@ -48,8 +48,8 @@ On Linux, the focus is not on the file-extensions and any file can be executed, 
 
 If you want to list these extensions you can use the `FileGoodies.listExecutableExtensions()` method.
 ```java
-   List<String> extensions = FileGoodies.listExecutableExtensions();
-   extensions.forEach(System.out::println);
+List<String> extensions = FileGoodies.listExecutableExtensions();
+extensions.forEach(System.out::println);
 ```
 On Windows the code above will print this:
 ```
@@ -79,8 +79,8 @@ If you have a file that has a too long absolute-path, and you want to short it, 
 is for you!
 
 Let's take an example:<br>
- You have a file: `user/home/documents/work/plan/Example.docx`<br/>
- You want to show only the corresponding directory of the file, and you want to hide the others like this: `.../plan/Example.docx`
+ You have a file: `user\home\documents\work\plan\Example.docx` and
+ you want to show only the corresponding directory of the file, and you want to hide the others like this: `.../plan/Example.docx`
 
 In code:
 ```java
@@ -93,6 +93,42 @@ Output:
 ...\plan\Example.docx
 ```
 
-You can also specify a custom `prefix` which was `...` in the previous example.
+You can also specify a custom `prefix` which was `...` in the previous example and a custom
+`separator` which was `\`.
+
 For more information just go to the [javadoc]().
+
+
+##### <a name="FileGoodies-class-more"></a> More
+There are other useful methods available in the `FileGoodies` class, and you can read their
+documentation. 
+
+#### <a name="FormattedFile-class"><a/> The FormattedFile class
+The `com.jfilegoodies.FormattedFile` is a subtype of `java.io.File`. 
+It has all constructors and methods that a basic `File` object provides.
+The most significant difference is that a `FormattedFile` separates the file-name into two different parts:
+* a simpleName (the file's name without its extension); Can be retrieved by `FormattedFile.getSimpleName()` 
+* an extension; can be retrieved by `FormattedFile.getExtension()`
+
+##### <a name="FormattedFile-extension"></a> Converting a `File` to a `FormattedFile` and getting the extension
+
+**Wrapping an existing `File` into a `FormattedFile`**
+```java
+File file = new File("user/home/documents/work/plan/Example.docx");
+FormattedFile formattedFile = new FormattedFile(file);
+```
+**Getting the extension**
+```java
+System.out.println(formattedFile.getExtension());
+// Or a more efficient way:
+formattedFile.getExtensionOptional()
+        .ifPresent(System.out::println);
+```
+Output:
+```
+docx
+```
+
+##### <a name="FormattedFile-more"></a> More 
+A `FormattedFile` has more features, take a look at the [javadoc]().
 
