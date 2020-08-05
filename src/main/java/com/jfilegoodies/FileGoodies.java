@@ -92,13 +92,43 @@ public final class FileGoodies {
      *
      * <a href='https://www.lifewire.com/list-of-executable-file-extensions-2626061'>List of Executable File Extensions</a>
      *
+     * <p>
+     * This method basically wraps the given {@link File} into {@link FormattedFile} and calls the {@link #isOSExecutable(FormattedFile)}
+     * method with it.
+     *
      * @param file the file to check
      * @return {@code true} if the file is an executable file; {@code false} otherwise
+     * @see #isOSExecutable(FormattedFile)
      * @since 1.0
      */
     public static boolean isOSExecutable(File file) {
-        FormattedFile formattedFile;
-        if (file == null || file.isDirectory() || (formattedFile = new FormattedFile(file)).hasNoExtension())
+        return isOSExecutable(file == null ? null : new FormattedFile(file));
+    }
+
+    /**
+     * Checks that the file is an executable file on the current OS.
+     *
+     * <p>
+     * If the file is a directory or it hasn't got an extension the method will immediately return.
+     *
+     * <p>
+     * Example (on Windows) :
+     * <pre>
+     *     isOSExecutable(new FormattedFile("file.txt")) => false
+     *     isOSExecutable(new FormattedFile("program.exe") => true
+     *     isOSExecutable(new FormattedFile("script.bat") => true
+     * </pre>
+     *
+     * <i>Note: it checks the file's executability only by it's extension, so it's may be not enough for you</i>
+     *
+     * <a href='https://www.lifewire.com/list-of-executable-file-extensions-2626061'>List of Executable File Extensions</a>
+     *
+     * @param file the {@link FormattedFile} object that separates the extension from it's name
+     * @return {@code true} if the file is an executable file; {@code false} otherwise
+     * @since 1.0
+     */
+    public static boolean isOSExecutable(FormattedFile file) {
+        if (file == null || file.isDirectory() || file.hasNoExtension())
             return false;
 
         //creating the regex that will match the file's extension if that's an executable type
@@ -115,7 +145,7 @@ public final class FileGoodies {
         }
 
         Pattern compiledRegex = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        return compiledRegex.matcher(formattedFile.getExtension()).matches();
+        return compiledRegex.matcher(file.getExtension()).matches();
     }
 
     /**
