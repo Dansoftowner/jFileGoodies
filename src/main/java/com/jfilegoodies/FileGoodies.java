@@ -64,7 +64,8 @@ public final class FileGoodies {
         ) : OsUtils.isLinux() ? Arrays.asList(
                 "bin", "csh",
                 "ksh", "out",
-                "run", "deb"
+                "run", "deb",
+                "sh", "rpm"
         ) : OsUtils.isMac() ? Arrays.asList(
                 "action", "app",
                 "bin", "command",
@@ -106,7 +107,7 @@ public final class FileGoodies {
             regex = "(exe|bat|bin|cmd|com|cpl|gadget|ins|inx|isu|job|jse|lnk|msc|msi|msp|mst" +
                     "|paf|pif|ps1|reg|rgs|scr|sct|shb|shs|u3p|vb|vbe|vbs|vbscript|ws|wsf|wsh)";
         } else if (OsUtils.isLinux()) {
-            regex = "(bin|csh|ksh|out|run|deb)";
+            regex = "(bin|csh|ksh|out|run|deb|sh|rpm)";
         } else if (OsUtils.isMac()) {
             regex = "(action|app|bin|command|csh|osx|workflow)";
         } else {
