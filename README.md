@@ -37,15 +37,14 @@ In this section we will cover some features of this library.
 
 #### The `FileGoodies` class
 
-The `com.jfilegoodies.FileGoodies` class provides 'helper' methods for files.
+The `com.jfilegoodies.FileGoodies` class provides a lot of 'helper' methods for you.
 Let's look at a few!
 
 ##### <a name="executable-file-ext"></a> Executable file-extensions
 Sometimes, we want to determine that a file is an executable file on the current OS.
 Usually, this can be checked based on the file's extension.
 On Windows there are executable file-extensions like `exe`, `bat` or `msi`.
-On Linux, the focus is not on the file-extensions and any file can be executed, unlike Windows but there are "executable" extensions like `sh` or `bin`.
-Etc...
+On Linux, the focus is not on the file-extensions and any file can be executed, unlike Windows but there are "executable" extensions like `sh` or `bin` etc...
 
 If you want to list these extensions you can use the `FileGoodies.listExecutableExtensions()` method.
 ```java
@@ -76,3 +75,24 @@ isOsExecutable: true
 Of course, we have also a `FileGoodies.isNotOSExecutable(File)` method.
 
 ##### <a name="file-path-short"></a> Shorting file-paths
+If you have a file that has a too long absolute-path, and you want to short it, the `FileGoodies.shortenedFilePath` method
+is for you!
+
+Let's take an example:<br>
+ You have a file: `user/home/documents/work/plan/Example.docx`<br/>
+ You want to show only the corresponding directory of the file, and you want to hide the others like this: `.../plan/Example.docx`
+
+In code:
+```java
+File file = new File("user\\home\\documents\\work\\plan\\Example.docx");
+String shortenedPath = FileGoodies.shortenedFilePath(file, 1 /*=> how many parent directories should be visible*/);
+System.out.println(shortenedPath);
+```
+Output:
+```
+...\plan\Example.docx
+```
+
+You can also specify a custom `prefix` which was `...` in the previous example.
+For more information just go to the [javadoc]().
+
