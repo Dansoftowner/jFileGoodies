@@ -12,10 +12,11 @@ This library includes:
 If you have become interested let's jump in to the [User Guide](#user-guide)!
 
 ## <a name="user-guide"></a> User Guide
-1. [Installation](#installation)
+1. [Compatibility](#compatibility)
+2. [Installation](#installation)
    * [Using maven](#installation-maven)
    * [Using gradle](#installation-gradle)
-2. [Using jFileGoodies](#using-library)
+3. [Using jFileGoodies](#using-library)
    * [The FileGoodies class](#FileGoodies-class)
       * [Executable file-extensions](#executable-file-ext)
       * [Shorting file-paths](#file-path-short)
@@ -25,6 +26,9 @@ If you have become interested let's jump in to the [User Guide](#user-guide)!
       * [More](#FormattedFile-more)
    * [The FileExplorer API](#FileExplorer-API)
      *
+### <a name="compatibility"><a/> Compatibility
+**jFileGoodies** is compatible with java 8+ environments.
+On Android the minimum API level is 24.
      
 ### <a name="installation"></a> Installation
 ##### <a name="installation-maven"></a> Using maven
@@ -110,14 +114,14 @@ The most significant difference is that a `FormattedFile` separates the file-nam
 * a simpleName (the file's name without its extension); Can be retrieved by `FormattedFile.getSimpleName()` 
 * an extension; can be retrieved by `FormattedFile.getExtension()`
 
-##### <a name="FormattedFile-extension"></a> Converting a `File` to a `FormattedFile` and getting the extension
+#### <a name="FormattedFile-extension"></a> Converting a `File` to a `FormattedFile` and getting the extension
 
-**Wrapping an existing `File` into a `FormattedFile`**
+<b>Wrapping an existing `File` into a `FormattedFile`<b/>
 ```java
 File file = new File("user/home/documents/work/plan/Example.docx");
 FormattedFile formattedFile = new FormattedFile(file);
 ```
-**Getting the extension**
+<b>Getting the extension<b/>
 ```java
 System.out.println(formattedFile.getExtension());
 // Or a more efficient way:
