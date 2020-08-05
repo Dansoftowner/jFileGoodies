@@ -124,3 +124,6 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij
+
+## Custom
+src/test/java/com/jfilegoodies/Random.java
