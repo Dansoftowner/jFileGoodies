@@ -136,3 +136,19 @@ docx
 ##### <a name="FormattedFile-more"></a> More 
 A `FormattedFile` has more features, take a look at the [javadoc]().
 
+### <a name="FileExplorer-API"></a> The FileExplorer API
+The FileExplorer API allows you to open a file in the system file explorer.
+It is a feature that probably you rarely want to use, but it's quite interesting.
+<i>It works only on desktop environments (Windows, Linux (desktop), MacOS)</i>
+
+Creating a `com.jfilegoodies.explorer.FileExplorer` object:
+```java
+FileExplorer fileExplorer = FileExplorers.get();
+```
+
+Opening a file:
+```java
+fileExplorer.openSelect(new File("path/to/file"));
+```
+Result (on Windows):
+![File selection in Windows FileExplorer](img/explorer-select-open.jpg)
