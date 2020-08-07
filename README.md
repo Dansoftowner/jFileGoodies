@@ -24,7 +24,7 @@ If you have become interested let's jump in to the [User Guide](#user-guide)!
       * [Converting a File to a FormattedFile and getting the extension](#FormattedFile-extension)
       * [More](#FormattedFile-more)
    * [The FileExplorer API](#FileExplorer-API)
-     *
+     
 ### <a name="compatibility"><a/> Compatibility
 **jFileGoodies** is compatible with java 8+ environments.
 On Android the minimum API level is 24.
