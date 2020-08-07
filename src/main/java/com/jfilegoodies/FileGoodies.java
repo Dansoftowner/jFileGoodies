@@ -102,7 +102,7 @@ public final class FileGoodies {
      * @since 1.0
      */
     public static boolean isOSExecutable(File file) {
-        return isOSExecutable(file == null ? null : new FormattedFile(file));
+        return isOSExecutable(file == null ? null : file instanceof FormattedFile ? (FormattedFile) file : new FormattedFile(file));
     }
 
     /**
