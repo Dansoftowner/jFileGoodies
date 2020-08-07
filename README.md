@@ -48,7 +48,7 @@ On Android the minimum API level is 24.
 <dependency>
 	 <groupId>com.github.Dansoftowner</groupId>
 	 <artifactId>jFileGoodies</artifactId>
-	 <version>1.1</version>
+	 <version>1.2</version>
 </dependency>
 ```
 
@@ -65,7 +65,7 @@ repositories {
 2. Add the dependency:
 ```groovy
 dependencies {
-    implementation 'com.github.Dansoftowner:jFileGoodies:1.1'
+    implementation 'com.github.Dansoftowner:jFileGoodies:1.2'
 }
 ```
 
