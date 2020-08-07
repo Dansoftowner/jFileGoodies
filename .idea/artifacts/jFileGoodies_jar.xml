@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="jFileGoodies:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jFileGoodies_jar</output-path>
+    <root id="archive" name="jFileGoodies.jar">
+      <element id="module-output" name="jFileGoodies.main" />
+    </root>
+  </artifact>
+</component>
