@@ -43,7 +43,7 @@ public final class FileExplorers {
      *
      * <pre>{@code
      * FileExplorer explorer = ...;
-     * FileExplorers.ExceptionFreeExplorer exceptionFreeExplorer = FileExplorers.notThrowsException(explorer);
+     * FileExplorers.LazyExplorer exceptionFreeExplorer = FileExplorers.notThrowsException(explorer);
      * //use it
      * }</pre>
      *
@@ -148,6 +148,22 @@ public final class FileExplorers {
         } else {
             return new NullFileExplorer();
         }
+    }
+
+    /**
+     * Creates an instance of the right {@link FileExplorer} implementation that is compatible
+     * with the current OS and wraps it into a {@link LazyExplorer}.
+     *
+     * It's literally a shorter way to do this:
+     * <pre>{@code
+     * FileExplorers.LazyExplorer explorer = FileExplorers.notThrowsException(FileExplorers.get());
+     * }</pre>
+     *
+     * @return the {@link FileExplorer} implementation wrapped in a {@link LazyExplorer}.
+     * @since 1.2
+     */
+    public static LazyExplorer getLazy() {
+        return notThrowsException(get());
     }
 
     /**
