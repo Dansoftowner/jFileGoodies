@@ -82,11 +82,11 @@ public final class FileGoodies {
      *
      * <p>
      * Example (on Windows) :
-     * <pre>
+     * <pre>{@code
      *     isOSExecutable(new File("file.txt")) => false
      *     isOSExecutable(new File("program.exe") => true
      *     isOSExecutable(new File("script.bat") => true
-     * </pre>
+     * }</pre>
      *
      * <i>Note: it checks the file's executability only by it's extension, so it's may be not enough for you</i>
      *
@@ -113,11 +113,11 @@ public final class FileGoodies {
      *
      * <p>
      * Example (on Windows) :
-     * <pre>
+     * <pre>{@code
      *     isOSExecutable(new FormattedFile("file.txt")) => false
      *     isOSExecutable(new FormattedFile("program.exe") => true
      *     isOSExecutable(new FormattedFile("script.bat") => true
-     * </pre>
+     * }</pre>
      *
      * <i>Note: it checks the file's executability only by it's extension, so it's may be not enough for you</i>
      *
@@ -163,10 +163,10 @@ public final class FileGoodies {
      * <p>
      * Example (on Windows):
      *
-     * <pre>
+     * <pre>{@code
      *     "C:/Users/User/test.txt" -> {@code true}
      *     "C?,:.f" -> {@code false}
-     * </pre>
+     * }</pre>
      *
      * @param file the file that we want to check; may be null
      * @return {@code true} if the filepath is valid; {@code false} otherwise.
@@ -212,10 +212,10 @@ public final class FileGoodies {
      * </ul>
      * <p>
      * <b>More examples</b>
-     * <pre>
+     * <pre>{@code
      *  shortenedFilePath(new File("programFiles/thePrg/appdata/inf/config.prop"), "<DEFAULT>", '\\', 0) => "<DEFAULT>\config.prop"
      *  shortenedFilePath(new File("users/user0/documents/Plans.docx"), "[USER_HOME]", '/', 1) => "[USER_HOME]/documents/Plans.docx"
-     * </pre>
+     * }</pre>
      *
      * @param file      the file that we want to show a shorter path of
      * @param prefix    the prefix that will be at the start of the string;
@@ -252,7 +252,7 @@ public final class FileGoodies {
 
     /**
      * Calls the {@link #shortenedFilePath(File, String, char, int)} method with the prefix
-     * <b>"..."<b>.
+     * <b>"..."</b>.
      *
      * @see #shortenedFilePath(File, String, char, int)
      * @since 1.0
@@ -284,8 +284,8 @@ public final class FileGoodies {
      * not existing (because the process that is described above will be repeated
      * while we get a file that is not existing).
      * <pre>
-     *     deprecateFile(File("file.txt")) => File("file_old3102.txt")
-     *     deprecateFile(File("path/to/someVideo.mp4")) => File("path/to/someVideo_old4916")
+     *     deprecateFile(File("file.txt")) = File("file_old3102.txt")
+     *     deprecateFile(File("path/to/someVideo.mp4")) = File("path/to/someVideo_old4916")
      * </pre>
      *
      * <p>
