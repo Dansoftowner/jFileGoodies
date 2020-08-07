@@ -62,7 +62,7 @@ repositories {
 }
 ```
 
-Add the dependency:
+2. Add the dependency:
 ```groovy
 dependencies {
     implementation 'com.github.Dansoftowner:jFileGoodies:1.1'
