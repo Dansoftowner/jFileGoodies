@@ -9,7 +9,7 @@ This library includes:
  * a `FileExplorer` API that lets you to call the native GUI file explorer from java on Windows, Mac and Linux.
  * ...and more to come!
 
-If you have become interested let's jump in to the [User Guide](#user-guide)!
+If you have become interested let's jump in to the [User Guide](#user-guide) and [javadoc](https://jfilegoodies-javadoc.herokuapp.com/)!
 
 ## <a name="user-guide"></a> User Guide
 1. [Compatibility](#compatibility)
@@ -31,9 +31,43 @@ On Android the minimum API level is 24.
      
 ### <a name="installation"></a> Installation
 ##### <a name="installation-maven"></a> Using maven
-Coming soon...
+
+1. Add the repository:
+
+```xml
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+
+2. Add the dependency:
+```xml
+<dependency>
+	 <groupId>com.github.Dansoftowner</groupId>
+	 <artifactId>jFileGoodies</artifactId>
+	 <version>1.1</version>
+</dependency>
+```
+
 ##### <a name="installation-gradle"></a> Using gradle
-Coming soon...
+
+1. Add the repository:
+```groovy
+repositories {
+	//...
+	maven { url 'https://jitpack.io' }
+}
+```
+
+Add the dependency:
+```groovy
+dependencies {
+    implementation 'com.github.Dansoftowner:jFileGoodies:1.1'
+}
+```
 
 ### <a name="using-library"></a> Using jFileGoodies
 In this section we will cover some features of this library.
@@ -99,7 +133,7 @@ Output:
 You can also specify a custom `prefix` which was `...` in the previous example and a custom
 `separator` which was `\`.
 
-For more information just go to the [javadoc]().
+For more information just go to the [javadoc](https://jfilegoodies-javadoc.herokuapp.com/com/jfilegoodies/FileGoodies.html).
 
 <b>
 There are other useful methods available in the `FileGoodies` class, and you can read their
@@ -132,7 +166,7 @@ Output:
 docx
 ```
 
-**A `FormattedFile` has more features, take a look at the [javadoc]().**
+**A `FormattedFile` has more features, take a look at the [javadoc](https://jfilegoodies-javadoc.herokuapp.com/com/jfilegoodies/FormattedFile.html).**
 
 ### <a name="FileExplorer-API"></a> The FileExplorer API
 The FileExplorer API allows you to open a file in the system file explorer.
@@ -152,4 +186,4 @@ Result (on Windows):
 ![File selection in Windows FileExplorer](img/explorer-select-open.jpg)
 As you see, the gui file explorer has been opened and selected the file.
 
-**Of course, the FileExplorer API has other features, you can read them in the [javadoc]().**
+**Of course, the FileExplorer API has other features, you can read them in the [javadoc](https://jfilegoodies-javadoc.herokuapp.com/com/jfilegoodies/explorer/FileExplorer.html).**
