@@ -20,7 +20,6 @@ If you have become interested let's jump in to the [User Guide](#user-guide)!
    * [The FileGoodies class](#FileGoodies-class)
       * [Executable file-extensions](#executable-file-ext)
       * [Shorting file-paths](#file-path-short)
-      * [More](#FileGoodies-class-more)
    * [The FormattedFile class](#FormattedFile-class)
       * [Converting a File to a FormattedFile and getting the extension](#FormattedFile-extension)
       * [More](#FormattedFile-more)
@@ -102,10 +101,10 @@ You can also specify a custom `prefix` which was `...` in the previous example a
 
 For more information just go to the [javadoc]().
 
-
-##### <a name="FileGoodies-class-more"></a> More
+<b>
 There are other useful methods available in the `FileGoodies` class, and you can read their
 documentation. 
+</b>
 
 #### <a name="FormattedFile-class"><a/> The FormattedFile class
 The `com.jfilegoodies.FormattedFile` is a subtype of `java.io.File`. 
@@ -133,8 +132,7 @@ Output:
 docx
 ```
 
-##### <a name="FormattedFile-more"></a> More 
-A `FormattedFile` has more features, take a look at the [javadoc]().
+**A `FormattedFile` has more features, take a look at the [javadoc]().**
 
 ### <a name="FileExplorer-API"></a> The FileExplorer API
 The FileExplorer API allows you to open a file in the system file explorer.
@@ -152,3 +150,6 @@ fileExplorer.openSelect(new File("path/to/file"));
 ```
 Result (on Windows):
 ![File selection in Windows FileExplorer](img/explorer-select-open.jpg)
+As you see, the gui file explorer has been opened and selected the file.
+
+**Of course, the FileExplorer API has other features, you can read them in the [javadoc]().**
