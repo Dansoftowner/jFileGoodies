@@ -134,8 +134,7 @@ public final class FileGoodies {
         //creating the regex that will match the file's extension if that's an executable type
         String regex;
         if (OsUtils.isWindows()) {
-            regex = "(exe|bat|bin|cmd|com|cpl|gadget|ins|inx|isu|job|jse|lnk|msc|msi|msp|mst" +
-                    "|paf|pif|ps1|reg|rgs|scr|sct|shb|shs|u3p|vb|vbe|vbs|vbscript|ws|wsf|wsh)";
+            regex = "(exe|bat|bin|cmd|com|cpl|gadget|ins|inx|isu|job|jse|lnk|msc|msi|msp|mst|paf|pif|ps1|reg|rgs|scr|sct|shb|shs|u3p|vb|vbe|vbs|vbscript|ws|wsf|wsh)";
         } else if (OsUtils.isLinux()) {
             regex = "(bin|csh|ksh|out|run|deb|sh|rpm)";
         } else if (OsUtils.isMac()) {
