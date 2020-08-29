@@ -48,7 +48,7 @@ public class LinuxFileExplorer extends FileExplorer {
                 .append(XDG_OPEN)
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsoluteFile().getAbsolutePath())
+                .append(file.getAbsolutePath())
                 .append(QUOTATION)
                 .toString();
     }
@@ -59,7 +59,7 @@ public class LinuxFileExplorer extends FileExplorer {
                 .append(NAUTILUS)
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsoluteFile().getAbsolutePath())
+                .append(file.getAbsolutePath())
                 .append(QUOTATION)
                 .toString();
     }
