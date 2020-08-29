@@ -42,7 +42,7 @@ public class MacFileExplorer extends FileExplorer {
                 .append(OPEN)
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsolutePath())
+                .append(file.getPath())
                 .append(QUOTATION)
                 .toString();
     }
@@ -60,7 +60,7 @@ public class MacFileExplorer extends FileExplorer {
                 .append("Finder")
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsolutePath())
+                .append(file.getPath())
                 .append(QUOTATION)
                 .toString();
     }

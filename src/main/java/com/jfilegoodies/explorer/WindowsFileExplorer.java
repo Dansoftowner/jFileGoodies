@@ -45,7 +45,7 @@ public class WindowsFileExplorer extends FileExplorer {
                 .append("/root,")
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsolutePath())
+                .append(file.getPath())
                 .append(QUOTATION)
                 .toString();
     }
@@ -58,7 +58,7 @@ public class WindowsFileExplorer extends FileExplorer {
                 .append("/select,")
                 .append(SPACE)
                 .append(QUOTATION)
-                .append(file.getAbsolutePath())
+                .append(file.getPath())
                 .append(QUOTATION)
                 .toString();
     }
