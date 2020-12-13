@@ -39,7 +39,7 @@ public class LinuxFileExplorer extends FileExplorer {
 
     @Override
     protected String createOpenCommand() {
-        return NAUTILUS + SPACE + "--browser";
+        return NAUTILUS;
     }
 
     @Override
@@ -47,9 +47,7 @@ public class LinuxFileExplorer extends FileExplorer {
         return new StringBuilder()
                 .append(XDG_OPEN)
                 .append(SPACE)
-                .append(QUOTATION)
                 .append(file.getPath())
-                .append(QUOTATION)
                 .toString();
     }
 
@@ -58,9 +56,7 @@ public class LinuxFileExplorer extends FileExplorer {
         return new StringBuilder()
                 .append(NAUTILUS)
                 .append(SPACE)
-                .append(QUOTATION)
-                .append(file.getPath())
-                .append(QUOTATION)
+                .append(file.getAbsoluteFile().getPath())
                 .toString();
     }
 }
