@@ -47,7 +47,7 @@ public class LinuxFileExplorer extends FileExplorer {
         return new StringBuilder()
                 .append(XDG_OPEN)
                 .append(SPACE)
-                .append(file.getPath())
+                .append(file.getAbsolutePath())
                 .toString();
     }
 
@@ -56,7 +56,7 @@ public class LinuxFileExplorer extends FileExplorer {
         return new StringBuilder()
                 .append(NAUTILUS)
                 .append(SPACE)
-                .append(file.getAbsoluteFile().getPath())
+                .append(file.getAbsolutePath())
                 .toString();
     }
 }
