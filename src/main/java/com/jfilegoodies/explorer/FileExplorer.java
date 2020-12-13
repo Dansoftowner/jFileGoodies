@@ -16,6 +16,9 @@
 
 package com.jfilegoodies.explorer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +38,8 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0
  */
 public abstract class FileExplorer {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileExplorer.class);
 
     protected abstract String createOpenCommand();
     protected abstract String createOpenDirCommand(File file);
@@ -72,7 +77,9 @@ public abstract class FileExplorer {
             return false;
         }
 
-        return executeWithRuntime(createOpenDirCommand(file));
+        String cmd = createOpenDirCommand(file);
+        logger.debug("Open dir command created: '{}'", cmd);
+        return executeWithRuntime(cmd);
     }
 
     /**
@@ -94,18 +101,18 @@ public abstract class FileExplorer {
             return false;
         }
 
-        return executeWithRuntime(createOpenSelectCommand(file));
+        String cmd = createOpenSelectCommand(file);
+        logger.debug("Open&select command created: '{}'", cmd);
+        return executeWithRuntime(cmd);
     }
 
     private boolean executeWithRuntime(String command) throws IOException {
-        Process process = Runtime.getRuntime().exec(command);
-
         try {
+            Process process = Runtime.getRuntime().exec(command);
             process.waitFor(1, TimeUnit.SECONDS);
+            return true;
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        return true;
     }
 }
